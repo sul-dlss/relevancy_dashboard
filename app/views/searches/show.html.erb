@@ -1,20 +1,40 @@
 <p id="notice"><%= notice %></p>
-
+<% report = DifferenceReporter.new(@search.search_results).report %>
 <p>
   <strong>Query params:</strong>
   <%= @search.query_params %>
 
   <table>
     <tr>
-      <%  @search.search_results.each do |s| %>
-        <td>
-          <%= s.endpoint.url %>
-          <pre>
-            <%= s.response %>
-          </pre>
-        </td>
+      <th>
+      </th>
+      <% @search.search_results.each do |res| %>
+        <th>
+          <%= res.endpoint.url %> | <%= link_to 'Explain', res.explain_url %>
+          <p>
+            <%= res.data['responseHeader']['params'] %>
+          </p>
+          <p>
+            Docs numFound: <%= res.num_found %>
+          </p>
+          <p>
+            maxScore: <%= res.max_score %>
+          </p>
+        </th>
       <% end %>
-    </tr >
+    </tr>
+    <% report.each do |row| %>
+      <tr>
+        <td>
+          <%= prefix_style row[:prefix] %>
+        </td>
+        <% row[:docs].each do |col| %>
+          <td>
+            <%= col %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
   </table>
 </p>
 
