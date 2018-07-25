@@ -1,5 +1,6 @@
 class Search < ApplicationRecord
   has_many :search_results
+  paginates_per 100
 
   after_commit :generate_search_results_data
 

@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all.order(score: :desc)
+    @searches = Search.all.order(score: :desc).page(params[:page]).per(params[:per_page])
   end
 
   # GET /searches/1
