@@ -6,7 +6,7 @@ class DifferenceReporter
   end
 
   def doc_rows
-    transposed_data.each_with_index.map do |row, index|
+    @doc_rows ||= transposed_data.each_with_index.map do |row, index|
       next if row.all?(&:empty?)
 
       current_position = results.last.doc_ids.index(row.first['id'])
@@ -17,10 +17,28 @@ class DifferenceReporter
                  index - current_position
                end
       {
-        prefix: prefix,
+        originalPosition: index,
+        positionChange: prefix,
         docs: row.map { |x| "#{x['id']}: #{x['title_245a_display']}" }
       }
     end.compact
+  end
+
+  def change_score
+    score = 0
+    doc_rows.each do |row|
+      change = row[:positionChange] || 20
+      score +=  change.abs / Math.log(row[:originalPosition] + 2)
+    end
+    (score + Math.log(1 + num_found_difference)) * Math.log(1 + baseline_max_score)
+  end
+
+  def baseline_max_score
+    results.first.max_score
+  end
+
+  def num_found_difference
+    results.map(&:num_found).inject(:-)
   end
 
   def meta_info
@@ -34,6 +52,6 @@ class DifferenceReporter
   end
 
   def report
-    doc_rows
+    [doc_rows, change_score]
   end
 end

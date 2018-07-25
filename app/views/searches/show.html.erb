@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
-<% report = DifferenceReporter.new(@search.search_results).report %>
+<% report, score = DifferenceReporter.new(@search.search_results).report %>
+<p>
+  <strong>Change score: <%= @search.score.round(1) %></strong>
+</p>
 <p>
   <strong>Query params:</strong>
   <%= @search.query_params %>
@@ -26,7 +29,7 @@
     <% report.each do |row| %>
       <tr>
         <td>
-          <%= prefix_style row[:prefix] %>
+          <%= position_change_style row[:positionChange] %>
         </td>
         <% row[:docs].each do |col| %>
           <td>

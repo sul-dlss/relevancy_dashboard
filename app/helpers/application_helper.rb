@@ -1,11 +1,11 @@
 module ApplicationHelper
-  def prefix_style(prefix)
-    return '🤢' if prefix.nil?
-    return if prefix.zero?
-    if prefix.positive?
-      content_tag 'span', "⬆︎#{prefix}", style: 'color: #998ec3'
+  def position_change_style(position_change)
+    return '🤢' if position_change.nil?
+    return if position_change.zero?
+    if position_change.positive?
+      content_tag 'span', "⬆︎#{position_change}", style: 'color: #998ec3'
     else
-      content_tag 'span', "⬇︎#{prefix}", style: 'color: #f1a340'
+      content_tag 'span', "⬇︎#{position_change}", style: 'color: #f1a340'
     end
   end
 end

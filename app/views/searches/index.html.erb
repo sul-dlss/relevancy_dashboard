@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Query params</th>
+      <th>Score</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -14,6 +15,7 @@
     <% @searches.each do |search| %>
       <tr>
         <td><%= search.query_params %></td>
+        <td><%= search.score.round(1) %></td>
         <td><%= link_to 'Show', search %></td>
         <td><%= link_to 'Edit', edit_search_path(search) %></td>
         <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
