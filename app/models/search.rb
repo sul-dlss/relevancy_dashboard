@@ -4,7 +4,7 @@ class Search < ApplicationRecord
   after_commit :generate_search_results_data
 
   def generate_search_results_data
-    GenerateSearchResultsDataJob.perform_now(self)
+    GenerateSearchResultsDataJob.perform_later(self)
   end
 
   def params
