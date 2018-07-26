@@ -8,4 +8,8 @@ module ApplicationHelper
       content_tag 'span', "⬇︎#{position_change}", style: 'color: #f1a340'
     end
   end
+
+  def render_explain(explain)
+    content_tag(:pre, explain.split("\n").select { |x| x =~ /weight\(/ }.map(&:strip).sort_by { |x| x.match(/^([\d\.E-]+)/)[1].to_f }.reverse.join("\n"), class: 'explain')
+  end
 end
