@@ -15,7 +15,7 @@ class SearchResult < ApplicationRecord
   end
 
   def docs
-    @docs ||= data.fetch('response', {}).fetch('docs', []).fill({}, num_docs, 20 - num_docs)
+    @docs ||= data.fetch('response', {}).fetch('docs', [])
   end
 
   def num_docs
