@@ -18,8 +18,6 @@
 //= require bootstrap
 //= require_tree .
 
-$(function () {
-  $(document).on('ready page:load', function(event) {
-    $('[data-toggle="popover"]').popover();
-  });
-})
+$(document).on('ready turbolinks:load', function(event) {
+  $('[data-toggle="popover"]').popover()
+});
