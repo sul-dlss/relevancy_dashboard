@@ -19,7 +19,7 @@ class DifferenceReporter
       {
         originalPosition: index,
         positionChange: prefix,
-        docs: row.map { |x| "#{x['id']}: #{x['title_245a_display']}" }
+        docs: row
       }
     end.compact
   end

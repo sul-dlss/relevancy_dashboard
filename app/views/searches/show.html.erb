@@ -14,28 +14,30 @@
         </th>
         <% @search.search_results.each do |res| %>
           <th>
-            <%= res.endpoint.url %> | <%= link_to 'Explain', res.explain_url %>
-            <p>
-              <%= res.data['responseHeader']['params'] %>
-            </p>
-            <p>
-              Docs numFound: <%= res.num_found %>
-            </p>
-            <p>
-              maxScore: <%= res.max_score %>
-            </p>
+            <%= content_tag :span, res.endpoint.url, data: { toggle: 'popover', trigger: 'hover', content: ' ' + res.data['responseHeader']['params'].to_json } %>
           </th>
         <% end %>
       </tr>
+        <tr>
+          <th>
+          </th>
+          <% @search.search_results.each do |res| %>
+            <th>
+              Docs numFound: <%= res.num_found %> /
+              maxScore: <%= res.max_score %> <br />
+              <%= link_to 'Explain', res.request_url, class: 'btn btn-info' %>
+            </th>
+          <% end %>
+        </tr>
     </thead>
     <% report.each do |row| %>
       <tr>
         <td>
           <%= position_change_style row[:positionChange] %>
         </td>
-        <% row[:docs].each do |col| %>
+        <% row[:docs].each do |doc| %>
           <td>
-            <%= col %>
+            <%= content_tag :span, "#{doc['id']}: #{doc['title_245a_display']}", data: { toggle: 'popover', trigger: 'hover', content: doc['explain'] || doc['score'] } %>
           </td>
         <% end %>
       </tr>

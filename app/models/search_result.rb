@@ -3,11 +3,7 @@ class SearchResult < ApplicationRecord
   belongs_to :search
 
   def request_url
-    "#{endpoint.url}?#{search.params.merge('fl' => 'id,title_245a_display,score', 'wt' => 'json', 'rows' => 20).to_query}"
-  end
-
-  def explain_url
-    request_url + '&debugQuery=true&facet=false'
+    "#{endpoint.url}?#{search.params.merge('fl' => 'id,title_245a_display,score', 'wt' => 'json', 'rows' => 20, 'debugQuery' => true, 'facet' => false).to_query}"
   end
 
   def data
@@ -15,7 +11,7 @@ class SearchResult < ApplicationRecord
   end
 
   def docs
-    @docs ||= data.fetch('response', {}).fetch('docs', [])
+    @docs ||= data.fetch('response', {}).fetch('docs', []).map { |doc| doc.merge('explain' => doc_explain(doc['id'])) }
   end
 
   def num_docs
@@ -32,6 +28,10 @@ class SearchResult < ApplicationRecord
 
   def doc_ids
     @doc_ids ||= docs.map { |x| x['id'] }
+  end
+
+  def doc_explain(id)
+    data.fetch('debug', {}).fetch('explain', {}).fetch(id, nil)
   end
 
   def retrieve_search_results!
