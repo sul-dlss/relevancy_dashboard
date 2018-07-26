@@ -7,25 +7,27 @@
   <strong>Query params:</strong>
   <%= render_query_params @search.params %>
 
-  <table>
-    <tr>
-      <th>
-      </th>
-      <% @search.search_results.each do |res| %>
+  <table class="table table-striped">
+    <thead class="thead-light">
+      <tr>
         <th>
-          <%= res.endpoint.url %> | <%= link_to 'Explain', res.explain_url %>
-          <p>
-            <%= res.data['responseHeader']['params'] %>
-          </p>
-          <p>
-            Docs numFound: <%= res.num_found %>
-          </p>
-          <p>
-            maxScore: <%= res.max_score %>
-          </p>
         </th>
-      <% end %>
-    </tr>
+        <% @search.search_results.each do |res| %>
+          <th>
+            <%= res.endpoint.url %> | <%= link_to 'Explain', res.explain_url %>
+            <p>
+              <%= res.data['responseHeader']['params'] %>
+            </p>
+            <p>
+              Docs numFound: <%= res.num_found %>
+            </p>
+            <p>
+              maxScore: <%= res.max_score %>
+            </p>
+          </th>
+        <% end %>
+      </tr>
+    </thead>
     <% report.each do |row| %>
       <tr>
         <td>
