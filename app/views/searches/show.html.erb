@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% report, score = DifferenceReporter.new(@search.search_results).report %>
+<% report = DifferenceReporter.new(@search.search_results).report %>
 <p>
   <strong>Change score: <%= number_with_precision(@search.score, precision: 1) %></strong>
 </p>

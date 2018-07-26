@@ -52,6 +52,6 @@ class DifferenceReporter
   end
 
   def report
-    [doc_rows, change_score]
+    doc_rows
   end
 end
