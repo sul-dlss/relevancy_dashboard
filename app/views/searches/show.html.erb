@@ -25,7 +25,7 @@
             <th>
               Docs numFound: <%= res.num_found %> /
               maxScore: <%= res.max_score %> <br />
-              <%= link_to 'Explain', res.explain_url, class: 'btn btn-info' %>
+              <%= link_to 'Explain', res.request_url, class: 'btn btn-info' %>
             </th>
           <% end %>
         </tr>
@@ -35,9 +35,9 @@
         <td>
           <%= position_change_style row[:positionChange] %>
         </td>
-        <% row[:docs].each do |col| %>
+        <% row[:docs].each do |doc| %>
           <td>
-            <%= col %>
+            <%= content_tag :span, "#{doc['id']}: #{doc['title_245a_display']}", data: { toggle: 'popover', trigger: 'hover', content: doc['explain'] || doc['score'] } %>
           </td>
         <% end %>
       </tr>
