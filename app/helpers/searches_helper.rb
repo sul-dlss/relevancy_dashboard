@@ -1,6 +1,6 @@
 module SearchesHelper
   def render_query_params query_params
-    render_q_param(query_params['q']) + ' ' + content_tag(:small, query_params.to_json.html_safe)
+    render_q_param(query_params.fetch('q', '(no q parameter given)')) + ' ' + content_tag(:small, query_params.to_json.html_safe)
   end
 
   def render_q_param(q)
