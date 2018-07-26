@@ -19,5 +19,7 @@
 //= require_tree .
 
 $(function () {
-  $('[data-toggle="popover"]').popover()
+  $(document).on('ready page:load', function(event) {
+    $('[data-toggle="popover"]').popover();
+  });
 })
