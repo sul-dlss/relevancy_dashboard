@@ -48,10 +48,14 @@ class DifferenceReporter
   end
 
   def transposed_data
-    results.map(&:docs).transpose
+    results.map { |x| x.docs.fill({}, num_docs, 20 - num_docs) }.transpose
   end
 
   def report
     [doc_rows, change_score]
+  end
+
+  def num_docs
+    results.first.num_docs
   end
 end

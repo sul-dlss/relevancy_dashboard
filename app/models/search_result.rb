@@ -10,16 +10,12 @@ class SearchResult < ApplicationRecord
     request_url + '&debugQuery=true&facet=false'
   end
 
-  def response_ids
-    # CSV.parse(response).to_a.drop(1).flatten
-  end
-
   def data
     @data ||= JSON.parse(response)
   end
 
   def docs
-    @docs ||= data.fetch('response', {}).fetch('docs', []).fill({}, num_docs, 20 - num_docs)
+    @docs ||= data.fetch('response', {}).fetch('docs', [])
   end
 
   def num_docs
