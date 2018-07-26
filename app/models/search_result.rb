@@ -10,10 +10,6 @@ class SearchResult < ApplicationRecord
     request_url + '&debugQuery=true&facet=false'
   end
 
-  def response_ids
-    # CSV.parse(response).to_a.drop(1).flatten
-  end
-
   def data
     @data ||= JSON.parse(response)
   end
