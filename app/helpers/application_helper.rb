@@ -10,6 +10,8 @@ module ApplicationHelper
   end
 
   def render_explain(explain)
+    return unless explain.present?
+
     content_tag(:pre, explain.split("\n").select { |x| x =~ /weight\(/ }.map(&:strip).sort_by { |x| x.match(/^([\d\.E-]+)/)[1].to_f }.reverse.join("\n"), class: 'explain')
   end
 end
