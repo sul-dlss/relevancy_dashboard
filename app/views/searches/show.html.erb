@@ -37,7 +37,7 @@
         </td>
         <% row[:docs].each do |doc| %>
           <td>
-            <%= content_tag :span, "#{doc['id']}: #{doc['title_245a_display']}", data: { toggle: 'popover', trigger: 'hover', content: doc['explain'] || doc['score'] } %>
+            <%= content_tag :span, "#{doc['id']}: #{doc['title_245a_display']}", data: { toggle: 'popover', trigger: 'click', html: true, title: doc['score'], content: content_tag(:pre, doc['explain'], class: 'explain') } %>
           </td>
         <% end %>
       </tr>
