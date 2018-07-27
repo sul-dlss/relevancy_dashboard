@@ -19,6 +19,38 @@
 .explain {
   height: 500px;
   overflow-y: scroll;
+
+  .weight > .details {
+    border-left: 3px solid #999;
+  }
+
+  .sum {
+    > ul {
+      list-style: none;
+
+      > li:first-child:before {
+        visibility: hidden;
+      }
+
+      > li:before {
+        content: '➕';
+      }
+    }
+  }
+
+  .product {
+    > ul {
+      list-style: none;
+
+      > li:first-child:before {
+        visibility: hidden;
+      }
+
+      > li:before {
+        content: '✖️';
+      }
+    }
+  }
 }
 
 
