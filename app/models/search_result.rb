@@ -3,7 +3,7 @@ class SearchResult < ApplicationRecord
   belongs_to :search
 
   def request_url
-    "#{endpoint.url}?#{search.params.merge('fl' => 'id,title_245a_display,score', 'wt' => 'json', 'rows' => 20, 'debugQuery' => true, 'facet' => false).to_query}"
+    "#{endpoint.url}?#{search.params.merge('fl' => 'id,title_245a_display,score', 'wt' => 'json', 'rows' => 20, 'debugQuery' => true, 'facet' => false, 'debug.explain.structured' => true).to_query}"
   end
 
   def data

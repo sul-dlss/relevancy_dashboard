@@ -19,5 +19,6 @@
 //= require_tree .
 
 $(document).on('ready turbolinks:load', function(event) {
-  $('[data-toggle="popover"]').popover()
+  $('[data-toggle="popover"]').popover();
+  $('.collapse').collapse();
 });
