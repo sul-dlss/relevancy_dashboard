@@ -19,11 +19,11 @@ class SearchResult < ApplicationRecord
   end
 
   def num_found
-    data.fetch('response', {}).fetch('numFound', nil)
+    data.fetch('response', {}).fetch('numFound', 0)
   end
 
   def max_score
-    data.fetch('response', {}).fetch('maxScore', nil)
+    data.fetch('response', {}).fetch('maxScore', 0)
   end
 
   def doc_ids
