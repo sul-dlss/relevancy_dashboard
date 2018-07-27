@@ -9,7 +9,7 @@ class DifferenceReporter
     @doc_rows ||= transposed_data.each_with_index.map do |row, index|
       next if row.all?(&:empty?)
 
-      current_position = results.last.doc_ids.index(row.first['id'])
+      current_position = results.last.doc_ids.index((row.first || {})['id'])
 
       prefix = if current_position.nil?
                  nil
