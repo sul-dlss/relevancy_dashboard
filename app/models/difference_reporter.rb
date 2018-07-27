@@ -18,6 +18,7 @@ class DifferenceReporter
                end
       {
         originalPosition: index,
+        originalScore: (row.first || {})['score'],
         positionChange: prefix,
         docs: row
       }
@@ -28,13 +29,13 @@ class DifferenceReporter
     score = 0
     doc_rows.each do |row|
       change = row[:positionChange] || 20
-      score +=  change.abs / Math.log(row[:originalPosition] + 2)
+      score += (Math.sqrt(1 + row[:originalScore]) / Math.sqrt(1 + baseline_max_score)) * change.abs / Math.sqrt(1 + row[:originalPosition])
     end
     (score + Math.log(1 + num_found_difference)) * Math.log(1 + baseline_max_score)
   end
 
   def baseline_max_score
-    results.first.max_score
+    @baseline_max_score ||= results.first.max_score
   end
 
   def num_found_difference
