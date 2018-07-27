@@ -38,7 +38,7 @@ class DifferenceReporter
   end
 
   def num_found_difference
-    results.map(&:num_found).inject(:-)
+    results.map(&:num_found).inject(:-).abs
   end
 
   def meta_info
