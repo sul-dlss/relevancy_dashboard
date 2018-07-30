@@ -1,0 +1,34 @@
+
+<div class="chart">
+  <canvas id="myChart" width="400" height="300"></canvas>
+</div>
+
+<script>
+<% buckets = [0, 25, 50, 100, 200, 400] %>
+var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: <%= buckets.to_json.html_safe %>,
+      datasets: [{
+        label: 'Count',
+        data: <%= (buckets.each_cons(2).map { |b, b1| @searches.where('score >= ? AND score < ?', b, b1).count } + [@searches.where('score >= ?', buckets.last).count]).to_json.html_safe %>
+      }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            xAxes: [{
+              scaleLabel: {
+                labelString: 'Score'
+              }
+            }],
+            yAxes: [{
+                type: 'logarithmic'
+            }]
+        }
+    }
+});
+myChart.canvas.parentNode.style.height = '300px';
+</script>

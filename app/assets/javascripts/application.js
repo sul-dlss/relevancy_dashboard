@@ -16,6 +16,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+//= require Chart.min
 //= require_tree .
 
 $(document).on('ready turbolinks:load', function(event) {
