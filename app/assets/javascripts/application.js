@@ -20,6 +20,6 @@
 //= require_tree .
 
 $(document).on('ready turbolinks:load', function(event) {
-  $('[data-toggle="popover"]').popover();
+  $('[data-toggle="popover"]').popover({ trigger: 'focus' });
   $('.collapse').collapse();
 });
