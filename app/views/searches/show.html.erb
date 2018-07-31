@@ -37,7 +37,11 @@
         </td>
         <% row[:docs].each do |doc| %>
           <td>
-            <%= content_tag :span, "#{doc['id']}: #{doc['title_245a_display']}", data: { toggle: 'popover', trigger: 'click', html: true, title: doc['score'], content: render_explain(doc['explain']) } %>
+            <% if doc['id'] %>
+              <%= content_tag :span, data: { toggle: 'popover', trigger: 'click', html: true, title: doc['score'], content: render_explain(doc['explain']) } do %>
+                <%= link_to doc['id'], "https://searchworks.stanford.edu/view/#{doc['id']}" %>: <%= "#{doc['title_245a_display']}" %>
+              <% end %>
+            <% end %>
           </td>
         <% end %>
       </tr>
