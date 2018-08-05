@@ -26,6 +26,13 @@
               Docs numFound: <%= res.num_found %> /
               maxScore: <%= res.max_score %> <br />
               <%= link_to 'Explain', res.explain_url, class: 'btn btn-info' %>
+
+              <div class="input-group mb-3 explain-other">
+                <input type="text" class="form-control" placeholder="document id">
+                <div class="input-group-append">
+                  <%= content_tag :a, 'Explain', class: 'btn btn-outline-secondary', tabindex: 0, data: { toggle: 'popover', trigger: 'click', html: true, ajax_content: search_explain_path(@search, res, '__PLACEHOLDER__') } %>
+                </div>
+              </div>
             </th>
           <% end %>
         </tr>

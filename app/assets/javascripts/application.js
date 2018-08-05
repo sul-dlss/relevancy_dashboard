@@ -26,17 +26,23 @@ function details_in_popup(link, div_id){
             $('#'+div_id).html(response);
         }
     });
-    return '<div id="'+ div_id +'" class="alert alert-primary">Loading...</div>';
+    return '<div id="'+ div_id +'">Loading...</div>';
 }
 
 $(document).on('ready turbolinks:load', function(event) {
   $('.collapse').collapse();
 
   $('[data-toggle="popover"][data-ajax-content]').popover({
-    trigger: 'focus',
+    trigger: 'click',
     content: function(){
         var div_id =  "tmp-id-" + $.now();
-        return details_in_popup($(this).data('ajax-content'), div_id);
+        var link = $(this).data('ajax-content');
+
+        if(this && link.match(/__PLACEHOLDER__/)) {
+          link = link.replace("__PLACEHOLDER__", $(this).closest('.explain-other').find('input').val())
+        }
+
+        return details_in_popup(link, div_id);
     }
   });
 });

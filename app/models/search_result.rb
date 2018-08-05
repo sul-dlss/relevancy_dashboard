@@ -10,8 +10,8 @@ class SearchResult < ApplicationRecord
     search.params.merge('fl' => 'id,title_245a_display,score', 'wt' => 'json', 'rows' => 20, 'debugQuery' => true, 'facet' => false)
   end
 
-  def explain_url(id)
-    "#{endpoint.url}?#{search_params.merge('debug.explain.structured' => true, 'explainOther' => "id:#{id}").to_query}"
+  def explain_url(id = nil)
+    "#{endpoint.url}?#{search_params.merge('debug.explain.structured' => true, 'explainOther' => "id:#{id || '__undefined__'}").to_query}"
   end
 
   def data
@@ -39,7 +39,7 @@ class SearchResult < ApplicationRecord
   end
 
   def doc_explain(id)
-    if data.fetch('debug', {}).fetch('explain', {}).fetch(id, nil)
+    if false && data.fetch('debug', {}).fetch('explain', {}).fetch(id, nil)
       data.fetch('debug', {}).fetch('explain', {}).fetch(id, nil)
     else
       fetch_doc_explain(id)
@@ -48,7 +48,7 @@ class SearchResult < ApplicationRecord
 
   def fetch_doc_explain(id)
     explain = JSON.parse(HTTP.timeout(:write => 2, :connect => 5, :read => 10).get(explain_url(id)).body)
-    explain.fetch('debug', {}).fetch('explain', {}).fetch(id, nil)
+    explain.fetch('debug', {}).fetch('explainOther', {}).fetch(id, nil)
   end
 
   def retrieve_search_results!

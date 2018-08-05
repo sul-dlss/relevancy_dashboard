@@ -64,11 +64,10 @@ class SearchesController < ApplicationController
   def explain
     @search = Search.find(params[:search_id])
     @search_result = @search.search_results.find(params[:search_result_id])
-    @doc_id = params[:doc_id]
+    @id = params[:id]
 
     respond_to do |format|
-      format.html { render html: view_context.render_explain(@search_result.doc_explain(@doc_id)) }
-      format.json { head :no_content }
+      format.html { render layout: false }
     end
   end
 
