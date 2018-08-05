@@ -2,13 +2,23 @@
 
 <h1>Searches</h1>
 
+<%= form_tag(searches_path, method: 'GET') do %>
+  <div class="input-group mb-6">
+    <%= text_field_tag :like, params[:like], placeholder: 'Search query parameters for...', class: 'form-control' %>
+    <div class="input-group-append">
+      <%= submit_tag 'Search', class: 'btn btn-outline-primary' %>
+    </div>
+  </div>
+<% end %>
+
 <%= render 'dashboard' if @searches.current_page == 1 %>
 
 <table class="table table-striped">
   <thead class="thead-light">
     <tr>
-      <th>Query params</th>
-      <th>Score</th>
+      <th><%= link_to 'Query params', sort: 'query_params', class: 'btn btn-text' %></th>
+      <th><%= link_to 'Score', sort: 'score' %></th>
+      <th><%= link_to 'Query params', sort: 'created_at' %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,9 +28,8 @@
       <tr>
         <td><%= render_query_params search.params %></td>
         <td><%= number_with_precision(search.score, precision: 1) %></td>
+        <td><%= l(search.created_at, format: :short) %></td>
         <td><%= link_to 'Show', search %></td>
-        <td><%= link_to 'Edit', edit_search_path(search) %></td>
-        <td><%= link_to 'Destroy', search, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

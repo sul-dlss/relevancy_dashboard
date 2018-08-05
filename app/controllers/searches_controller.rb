@@ -4,7 +4,25 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all.order(score: :desc).page(params[:page]).per(params[:per_page])
+    @searches = Search.all.order(
+      case params[:sort]
+      when 'query_params'
+        { query_params: :asc }
+      when 'created_at'
+        { created_at: :desc }
+      else
+        { score: :desc }
+      end
+    ).where(
+      case
+      when params[:score]
+        ['score >= ? AND score < ?', *params[:score]]
+      when params[:like]
+        ['query_params LIKE ?', "%#{params[:like]}%"]
+      else
+        {}
+      end
+    ).page(params[:page]).per(params[:per_page])
   end
 
   # GET /searches/1
