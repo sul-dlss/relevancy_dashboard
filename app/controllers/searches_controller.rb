@@ -61,6 +61,17 @@ class SearchesController < ApplicationController
     end
   end
 
+  def explain
+    @search = Search.find(params[:search_id])
+    @search_result = @search.search_results.find(params[:search_result_id])
+    @doc_id = params[:doc_id]
+
+    respond_to do |format|
+      format.html { render html: view_context.render_explain(@search_result.doc_explain(@doc_id)) }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_search
