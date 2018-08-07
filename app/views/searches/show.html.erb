@@ -25,7 +25,14 @@
             <th>
               Docs numFound: <%= res.num_found %> /
               maxScore: <%= res.max_score %> <br />
-              <%= link_to 'Explain', res.request_url, class: 'btn btn-info' %>
+              <%= link_to 'Explain', res.explain_url, class: 'btn btn-info' %>
+
+              <div class="input-group mb-3 explain-other">
+                <input type="text" class="form-control" placeholder="document id">
+                <div class="input-group-append">
+                  <%= content_tag :a, 'Explain', class: 'btn btn-outline-secondary', tabindex: 0, data: { toggle: 'popover', trigger: 'click', html: true, ajax_content: search_explain_path(@search, res, '__PLACEHOLDER__') } %>
+                </div>
+              </div>
             </th>
           <% end %>
         </tr>
@@ -38,9 +45,8 @@
         <% row[:docs].each do |doc| %>
           <td>
             <% if doc['id'] %>
-              <%= content_tag :span, data: { toggle: 'popover', trigger: 'click', html: true, title: doc['score'], content: render_explain(doc['explain']) } do %>
-                <%= link_to doc['id'], "https://searchworks.stanford.edu/view/#{doc['id']}" %>: <%= "#{doc['title_245a_display']}" %>
-              <% end %>
+              <%= link_to doc['id'], "https://searchworks.stanford.edu/view/#{doc['id']}" %>: <%= "#{doc['title_245a_display']}" %>
+              <%= content_tag :a, '[explain]', tabindex: 0, data: { toggle: 'popover', trigger: 'click', html: true, title: doc['score'], ajax_content: search_explain_path(@search, doc['search_result'], doc['id']) } %>
             <% end %>
           </td>
         <% end %>

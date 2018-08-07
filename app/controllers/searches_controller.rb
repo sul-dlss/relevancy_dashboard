@@ -4,7 +4,25 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all.order(score: :desc).page(params[:page]).per(params[:per_page])
+    @searches = Search.all.order(
+      case params[:sort]
+      when 'query_params'
+        { query_params: :asc }
+      when 'created_at'
+        { created_at: :desc }
+      else
+        { score: :desc }
+      end
+    ).where(
+      case
+      when params[:score]
+        ['score >= ? AND score < ?', *params[:score]]
+      when params[:like]
+        ['query_params LIKE ?', "%#{params[:like]}%"]
+      else
+        {}
+      end
+    ).page(params[:page]).per(params[:per_page])
   end
 
   # GET /searches/1
@@ -58,6 +76,16 @@ class SearchesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to searches_url, notice: 'Search was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def explain
+    @search = Search.find(params[:search_id])
+    @search_result = @search.search_results.find(params[:search_result_id])
+    @id = params[:id]
+
+    respond_to do |format|
+      format.html { render layout: false }
     end
   end
 

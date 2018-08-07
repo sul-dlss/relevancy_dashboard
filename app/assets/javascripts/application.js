@@ -19,7 +19,30 @@
 //= require Chart.min
 //= require_tree .
 
+function details_in_popup(link, div_id){
+    $.ajax({
+        url: link,
+        success: function(response){
+            $('#'+div_id).html(response);
+        }
+    });
+    return '<div id="'+ div_id +'">Loading...</div>';
+}
+
 $(document).on('ready turbolinks:load', function(event) {
-  $('[data-toggle="popover"]').popover();
   $('.collapse').collapse();
+
+  $('[data-toggle="popover"][data-ajax-content]').popover({
+    trigger: 'click',
+    content: function(){
+        var div_id =  "tmp-id-" + $.now();
+        var link = $(this).data('ajax-content');
+
+        if(this && link.match(/__PLACEHOLDER__/)) {
+          link = link.replace("__PLACEHOLDER__", $(this).closest('.explain-other').find('input').val())
+        }
+
+        return details_in_popup(link, div_id);
+    }
+  });
 });
