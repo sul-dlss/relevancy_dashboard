@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   resources :endpoints
   resources :searches do
+    member do
+      get 'refresh'
+    end
     get 'search_results/:search_result_id/explain/:id', to: 'searches#explain', as: :explain
   end
 

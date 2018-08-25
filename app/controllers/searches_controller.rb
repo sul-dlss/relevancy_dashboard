@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-  before_action :set_search, only: [:show, :edit, :update, :destroy]
+  before_action :set_search, only: [:show, :edit, :update, :destroy, :refresh]
 
   # GET /searches
   # GET /searches.json
@@ -86,6 +86,18 @@ class SearchesController < ApplicationController
 
     respond_to do |format|
       format.html { render layout: false }
+    end
+  end
+
+  def refresh
+    respond_to do |format|
+      if GenerateSearchResultsDataJob.perform_now(@search)
+        format.html { redirect_to @search, notice: 'Search was successfully updated.' }
+        format.json { render :show, status: :ok, location: @search }
+      else
+        format.html { redirect_to @search, notice: 'Search was not updated.' }
+        format.json { render :show, status: :unprocessable_entity, location: @search }
+      end
     end
   end
 
