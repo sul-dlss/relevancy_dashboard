@@ -39,11 +39,7 @@ class SearchResult < ApplicationRecord
   end
 
   def doc_explain(id)
-    if false && data.fetch('debug', {}).fetch('explain', {}).fetch(id, nil)
-      data.fetch('debug', {}).fetch('explain', {}).fetch(id, nil)
-    else
-      fetch_doc_explain(id)
-    end
+    fetch_doc_explain(id)
   end
 
   def fetch_doc_explain(id)
