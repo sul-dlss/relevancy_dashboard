@@ -17,9 +17,9 @@ class DifferenceReporter
                  index - current_position
                end
       {
-        originalPosition: index,
-        originalScore: (row.first || {})['score'],
-        positionChange: prefix,
+        originalPosition: index || 0,
+        originalScore: (row.first || {})['score'] || 0,
+        positionChange: prefix || 0,
         docs: row
       }
     end.compact
@@ -57,6 +57,6 @@ class DifferenceReporter
   end
 
   def num_docs
-    results.first.num_docs
+    results.map(&:num_docs).max
   end
 end
