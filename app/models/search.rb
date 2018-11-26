@@ -9,7 +9,7 @@ class Search < ApplicationRecord
   end
 
   def params
-    if query_params && query_params.starts_with?('{')
+    if query_params&.starts_with?('{')
       JSON.parse(query_params)
     else
       Rack::Utils.parse_nested_query query_params

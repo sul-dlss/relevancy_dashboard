@@ -14,10 +14,9 @@ class SearchesController < ApplicationController
         { score: :desc }
       end
     ).where(
-      case
-      when params[:score]
+      if params[:score]
         ['score >= ? AND score < ?', *params[:score]]
-      when params[:like]
+      elsif params[:like]
         ['query_params LIKE ?', "%#{params[:like]}%"]
       else
         {}

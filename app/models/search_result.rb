@@ -43,7 +43,7 @@ class SearchResult < ApplicationRecord
   end
 
   def fetch_doc_explain(id)
-    explain = JSON.parse(HTTP.timeout(:write => 2, :connect => 5, :read => 10).get(explain_url(id)).body)
+    explain = JSON.parse(HTTP.timeout(write: 2, connect: 5, read: 10).get(explain_url(id)).body)
     explain.fetch('debug', {}).fetch('explainOther', {}).fetch(id, nil)
   end
 

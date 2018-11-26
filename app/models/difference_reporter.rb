@@ -49,7 +49,10 @@ class DifferenceReporter
   end
 
   def transposed_data
-    results.map { |x| docs = x.docs; docs.fill({}, docs.length, num_docs - docs.length) }.transpose
+    results.map do |x|
+      docs = x.docs
+      docs.fill({}, docs.length, num_docs - docs.length)
+    end.transpose
   end
 
   def report
