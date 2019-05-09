@@ -228,7 +228,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    redis (4.1.0)
+    redis (4.1.1)
     regexp_parser (1.4.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
@@ -279,7 +279,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (3.142.0)
+    selenium-webdriver (3.142.1)
       childprocess (>= 0.5, < 2.0)
       rubyzip (~> 1.2, >= 1.2.2)
     sidekiq (5.2.7)
