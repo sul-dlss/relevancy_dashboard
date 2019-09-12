@@ -12,7 +12,7 @@ var myChart = new Chart(ctx, {
       labels: <%= buckets.to_json.html_safe %>,
       datasets: [{
         label: 'Count',
-        data: <%= (buckets.each_cons(2).map { |b, b1| @searches.except(:limit, :offset).where('score >= ? AND score < ?', b, b1).count } + [@searches.except(:limit, :offset).where('score >= ?', buckets.last).count]).to_json.html_safe %>
+        data: <%= (buckets.each_cons(2).map { |b, b1| @searches.unscope(:group).except(:limit, :offset).where('score >= ? AND score < ?', b, b1).count } + [@searches.unscope(:group).except(:limit, :offset).where('score >= ?', buckets.last).count]).to_json.html_safe %>
       }]
     },
     options: {
