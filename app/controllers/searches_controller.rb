@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   # GET /searches
   # GET /searches.json
   def index
-    @searches = Search.all.order(
+    @searches = Search.group(:query_params).all.order(
       case params[:sort]
       when 'query_params'
         { query_params: :asc }
@@ -22,11 +22,14 @@ class SearchesController < ApplicationController
         {}
       end
     ).page(params[:page]).per(params[:per_page])
+
+    @counts = Search.where(query_params: @searches.map(&:query_params)).group(:query_params).count
   end
 
   # GET /searches/1
   # GET /searches/1.json
   def show
+    @count = Search.where(query_params: @search.query_params).count
   end
 
   # GET /searches/new

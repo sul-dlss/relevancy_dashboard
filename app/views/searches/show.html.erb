@@ -4,6 +4,9 @@
   <strong>Change score: <%= number_with_precision(@search.score, precision: 1) %></strong>
 </p>
 <p>
+  <strong>Count: <%= @count %></strong>
+</p>
+<p>
   <strong>Query params:</strong>
   <%= render_query_params @search.params %>
 
