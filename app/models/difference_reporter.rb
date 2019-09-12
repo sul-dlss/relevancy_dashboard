@@ -19,7 +19,7 @@ class DifferenceReporter
       {
         originalPosition: index || 0,
         originalScore: (row.first || {})['score'] || 0,
-        positionChange: prefix || 0,
+        positionChange: prefix,
         docs: row
       }
     end.compact
