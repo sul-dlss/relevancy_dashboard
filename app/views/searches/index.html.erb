@@ -18,7 +18,7 @@
     <tr>
       <th><%= link_to 'Query params', sort: 'query_params', class: 'btn btn-text' %></th>
       <th><%= link_to 'Score', sort: 'score' %></th>
-      <th><%= link_to 'Query params', sort: 'created_at' %></th>
+      <th><%= link_to 'Updated', sort: 'updated_at' %></th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -28,7 +28,7 @@
       <tr>
         <td><%= render_query_params search.params %></td>
         <td><%= number_with_precision(search.score, precision: 1) %></td>
-        <td><%= l(search.created_at, format: :short) %></td>
+        <td><%= l(search.updated_at, format: :short) %></td>
         <td><%= link_to 'Show', search %></td>
       </tr>
     <% end %>

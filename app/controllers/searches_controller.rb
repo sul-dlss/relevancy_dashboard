@@ -8,8 +8,8 @@ class SearchesController < ApplicationController
       case params[:sort]
       when 'query_params'
         { query_params: :asc }
-      when 'created_at'
-        { created_at: :desc }
+      when 'updated_at'
+        { updated_at: :desc }
       else
         { score: :desc }
       end
