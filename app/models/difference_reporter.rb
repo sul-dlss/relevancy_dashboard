@@ -25,13 +25,43 @@ class DifferenceReporter
     end.compact
   end
 
+  # The change score is a metric for how different the two search result sets are, taking into
+  # account both recall and how the first page of documents are ranked. Higher scores mean
+  # the results are more different.
+  #
+  # Assumptions:
+  # - search results with low recall but high varience in relevancy are interesting
+  # - search results with high recall are not as interesting
+  # - the first few results changing is more interesting than the long tail
+  # - documents with an almost indistinguishable score compared to its neighbors moving around a little bit isn't interesting
   def change_score
     score = 0
-    doc_rows.each do |row|
-      change = row[:positionChange] || 20
-      score += (Math.sqrt(1 + row[:originalScore]) / Math.sqrt(1 + baseline_max_score)) * change.abs / Math.sqrt(1 + row[:originalPosition])
+    doc_rows.each_with_index do |row, index|
+      # if positionChange is nil, it's because it has fallen off the first page
+      change = row[:positionChange] || 25
+
+      # if the document is in the same place, I guess we don't care..
+      next if change.zero?
+
+      # use the difference in relevancy scores to temper the position change; if there wasn't a lot of difference between
+      # them, the position change shouldn't matter as much
+      next_score = (doc_rows[index + 1] || { originalScore: doc_rows.last[:originalScore] })[:originalScore]
+      weighted_delta_score = Math.sqrt(1 + (row[:originalScore] - next_score)) - 0.99
+
+      # weight the position change against where it originally appeared, so a #1 document has a larger impact
+      # than the #20 document.
+      position_change_score = change.abs / Math.sqrt(1 + row[:originalPosition])
+
+      # temper the position change with the relevancy delta information
+      score += weighted_delta_score * position_change_score
     end
-    (score + Math.log(1 + num_found_difference)) * Math.log(1 + baseline_max_score)
+    # if the original relevancy score was high, the differences matter more; low-quality searches probably had
+    # bad results anyway..
+    score *= Math.log(1 + baseline_max_score)
+
+    # finally, punish recall failures, weighted so small result sets changing a little have a bigger impact
+    # than a large result set changing a little.
+    score += 100 * Math.log(1 + num_found_difference / results.first.num_found)
   end
 
   def baseline_max_score
