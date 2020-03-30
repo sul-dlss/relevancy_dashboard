@@ -4,7 +4,7 @@ set :repo_url, 'https://github.com/sul-dlss/relevancy_dashboard.git'
 # Default branch is :master
 set :branch, 'master'
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, "/opt/app/solr/relevancy_dashboard"
+set :deploy_to, "/opt/app/blacklight/relevancy_dashboard"
 
 # Default value for :scm is :git
 # set :scm, :git
@@ -19,7 +19,7 @@ set :log_level, :info
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w(config/database.yml config/secrets.yml config/honeybadger.yml)
+set :linked_files, %w(config/database.yml config/honeybadger.yml)
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads config/settings)
