@@ -343,7 +343,7 @@ DEPENDENCIES
   capistrano-sidekiq
   capybara (>= 2.15, < 4.0)
   chart-js-rails
-  dlss-capistrano
+  dlss-capistrano (~> 3.5)
   honeybadger
   http
   jbuilder (~> 2.5)

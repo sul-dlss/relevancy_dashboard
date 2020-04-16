@@ -69,7 +69,7 @@ group :deployment do
   gem 'capistrano-passenger'
   gem 'capistrano-sidekiq'
   gem 'capistrano-shared_configs'
-  gem 'dlss-capistrano'
+  gem 'dlss-capistrano', '~> 3.5'
 end
 
 group :production do
