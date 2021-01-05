@@ -8,7 +8,6 @@ RSpec.describe "endpoints/edit", type: :view do
   it "renders the edit endpoint form" do
     render
 
-    assert_select "form[action=?][method=?]", endpoint_path(@endpoint), "post" do
-    end
+    assert_select "form[action=?][method=?]", endpoint_path(@endpoint), "post"
   end
 end
