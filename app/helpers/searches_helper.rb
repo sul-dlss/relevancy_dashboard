@@ -1,6 +1,6 @@
 module SearchesHelper
   def render_query_params query_params
-    "#{render_q_param(query_params.fetch('q', '(no q parameter given)'))} #{content_tag(:small, query_params.to_json.html_safe)}"
+    "#{render_q_param(query_params.fetch('q', '(no q parameter given)'))} #{content_tag(:small, query_params.to_json.html_safe)}".html_safe
   end
 
   def render_q_param(q)
@@ -15,7 +15,7 @@ module SearchesHelper
     }
 
     sanitized_q = q.gsub(Regexp.union(patterns.keys)) do |match|
-      "#{content_tag(:strong, patterns[match])}: "
+      "#{content_tag(:strong, patterns[match])}: ".html_safe
     end
 
     content_tag(:div, sanitized_q.html_safe)
