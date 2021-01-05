@@ -8,7 +8,6 @@ RSpec.describe "searches/edit", type: :view do
   it "renders the edit search form" do
     render
 
-    assert_select "form[action=?][method=?]", search_path(@search), "post" do
-    end
+    assert_select "form[action=?][method=?]", search_path(@search), "post"
   end
 end

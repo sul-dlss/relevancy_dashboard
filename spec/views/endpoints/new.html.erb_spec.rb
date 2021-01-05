@@ -8,7 +8,6 @@ RSpec.describe "endpoints/new", type: :view do
   it "renders new endpoint form" do
     render
 
-    assert_select "form[action=?][method=?]", endpoints_path, "post" do
-    end
+    assert_select "form[action=?][method=?]", endpoints_path, "post"
   end
 end
