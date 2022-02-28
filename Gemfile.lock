@@ -123,7 +123,7 @@ GEM
     connection_pool (2.2.5)
     crass (1.0.6)
     diff-lcs (1.5.0)
-    dlss-capistrano (3.11.1)
+    dlss-capistrano (4.0.0)
       capistrano (~> 3.0)
       capistrano-bundle_audit (>= 0.3.0)
       capistrano-one_time_key
@@ -280,7 +280,7 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
-    rubocop-rspec (2.8.0)
+    rubocop-rspec (2.9.0)
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
