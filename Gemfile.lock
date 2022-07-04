@@ -196,8 +196,8 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    minitest (5.16.1)
-    msgpack (1.5.2)
+    minitest (5.16.2)
+    msgpack (1.5.3)
     mysql2 (0.5.4)
     net-imap (0.2.3)
       digest
@@ -230,7 +230,7 @@ GEM
     puma (5.6.4)
       nio4r (~> 2.0)
     racc (1.6.0)
-    rack (2.2.3.1)
+    rack (2.2.4)
     rack-protection (2.2.0)
       rack
     rack-test (2.0.2)
@@ -307,8 +307,8 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
-    rubocop-rspec (2.11.1)
-      rubocop (~> 1.19)
+    rubocop-rspec (2.12.1)
+      rubocop (~> 1.31)
     ruby-progressbar (1.11.0)
     rubyzip (2.3.2)
     sass (3.7.4)
@@ -429,4 +429,4 @@ DEPENDENCIES
   webdrivers
 
 BUNDLED WITH
-   2.3.9
+   2.3.17
