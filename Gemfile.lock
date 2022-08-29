@@ -197,7 +197,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.16.3)
-    msgpack (1.5.4)
+    msgpack (1.5.6)
     mysql2 (0.5.4)
     net-imap (0.2.3)
       digest
@@ -227,7 +227,7 @@ GEM
       ast (~> 2.4.1)
     popper_js (2.11.5)
     public_suffix (5.0.0)
-    puma (5.6.4)
+    puma (5.6.5)
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
