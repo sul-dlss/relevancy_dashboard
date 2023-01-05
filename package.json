@@ -1,5 +1,10 @@
 {
   "name": "relevancy_dashboard",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "sass": "^1.57.1"
+  },
+  "scripts": {
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  }
 }

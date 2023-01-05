@@ -10,7 +10,7 @@ The relevancy dashboard provides a way to visualize document ranking and relevan
 
 ## Requirements
 
-1. Ruby (2.3.0 or greater)
+1. Ruby 3.1
 2. [bundler](http://bundler.io/) gem
 
 ## Installation
@@ -26,7 +26,7 @@ Move into the app and install dependencies
 
 Start the development server
 
-    $ rails s
+    $ bin/dev
 
 ## Configuring
 
@@ -36,7 +36,7 @@ Configuration is handled through the application.
 
 The test suite (with RuboCop style enforcement) will be run with the default rake task (also run on travis)
 
-    $ bundle exec rake
+    $ bin/rake
 
 The specs can be run without RuboCop style enforcement
 
