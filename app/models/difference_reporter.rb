@@ -61,7 +61,7 @@ class DifferenceReporter
 
     # finally, punish recall failures, weighted so small result sets changing a little have a bigger impact
     # than a large result set changing a little.
-    score += 100 * Math.log(1 + num_found_difference / results.first.num_found)
+    score += 100 * Math.log(1 + num_found_difference / (results.first.num_found + 0.0001))
   end
 
   def baseline_max_score
