@@ -6,8 +6,17 @@
 .explain {
   height: 500px;
   overflow-y: scroll;
+  padding-left: 0;
 
-  .weight > .details {
+  ul {
+    padding-left: 1.5rem;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .details {
     border-left: 3px solid #999;
   }
 

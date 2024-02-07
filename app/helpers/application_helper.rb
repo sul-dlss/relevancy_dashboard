@@ -49,8 +49,8 @@ module ApplicationHelper
                       end
 
       content_tag(:li,
-                  content_tag(:span, x['value'], class: 'badge badge-default') +
-                  content_tag(:span, x['description'].html_safe, data: { toggle: :collapse, target: "##{collapse_id}" }) +
+                  content_tag(:span, x['value'], class: 'badge text-bg-secondary') +
+                  content_tag(:span, x['description'].html_safe, data: { 'bs-toggle': :collapse, 'bs-target': "##{collapse_id}" }) +
                   content_tag(:ul, details.map { |y| navigator.call(y) }.join("\n").html_safe, id: collapse_id, class: "details collapse #{default_collapse_state}"),
                   class: explain_class)
     end
