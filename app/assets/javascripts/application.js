@@ -32,6 +32,7 @@ $(document).on('ready turbolinks:load', function(event) {
 
   $('[data-toggle="popover"][data-ajax-content]').popover({
     trigger: 'click',
+    html: true,
     content: function(){
         var div_id =  "tmp-id-" + $.now();
         var link = $(this).data('ajax-content');
