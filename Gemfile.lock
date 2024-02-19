@@ -154,7 +154,7 @@ GEM
       rake
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.4.1)
+    honeybadger (5.5.0)
     http (5.2.0)
       addressable (~> 2.8)
       base64 (~> 0.1)
