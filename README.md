@@ -20,10 +20,12 @@ Clone the repository
 
     $ git clone git@github.com:sul-dlss/relevancy_dashboard.git
 
-Move into the app and install dependencies
+Move into the app, install dependencies, and initialize the database
 
     $ cd relevancy_dashboard
     $ bundle install
+    $ yarn install
+    $ rails db:migrate
 
 Start the development server
 
@@ -50,6 +52,6 @@ The RuboCop style enforcement can be run without running the tests
 ## Adding endpoints and searches
 
 Endpoints can be added from the application (`/endpoints/new`). It should point at
-the query endpoint (often `/select`) for a solr core/collection.
+the query endpoint (often `/select`) for a solr core/collection. It is recommended to add at least two endpoints.
 
 Then, different search cases can be added. The query parameters are raw URL parameters (of the form `q=xyz&sort=score+asc`).
