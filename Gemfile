@@ -69,14 +69,13 @@ group :deployment do
   gem 'capistrano-rails'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
-  gem 'capistrano-sidekiq'
+  gem 'capistrano-sidekiq', '~> 2.3'
   gem 'capistrano-shared_configs'
   gem 'dlss-capistrano'
 end
 
-group :production do
-  gem 'sidekiq', '~> 5.0'
-end
+# Routes requires 'sidekiq/web'
+gem 'sidekiq', '~> 7.0'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -89,4 +88,4 @@ gem 'honeybadger'
 gem 'http'
 gem 'kaminari'
 
-gem "cssbundling-rails", "~> 1.1"
+gem 'cssbundling-rails', '~> 1.1'

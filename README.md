@@ -12,6 +12,7 @@ The relevancy dashboard provides a way to visualize document ranking and relevan
 
 1. Ruby 3.1
 2. [bundler](http://bundler.io/) gem
+3. [Redis](https://redis.io/)
 
 ## Installation
 
