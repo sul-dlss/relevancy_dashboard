@@ -24,7 +24,7 @@ pipeline {
           export DEPLOY=1
 
           # Load RVM
-          rvm use 3.0.3@relevancy_dashboard --create
+          rvm use 3.3.1@relevancy_dashboard --create
           gem install bundler
 
           bundle config --global gems.contribsys.com $SIDEKIQ_PRO_SECRET
