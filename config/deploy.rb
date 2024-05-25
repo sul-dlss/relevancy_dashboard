@@ -1,8 +1,12 @@
 set :application, 'relevancy_dashboard'
 set :repo_url, 'https://github.com/sul-dlss/relevancy_dashboard.git'
 
-# Default branch is :master
-ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call unless ENV['DEPLOY']
+# Default branch is :master so we need to update to main
+if ENV['DEPLOY']
+  set :branch, 'main'
+else
+  ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+end
 
 # Default deploy_to directory is /var/www/my_app
 set :deploy_to, "/opt/app/blacklight/relevancy_dashboard"
