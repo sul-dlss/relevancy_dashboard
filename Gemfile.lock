@@ -81,6 +81,8 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.2)
     base64 (0.2.0)
+    bcrypt_pbkdf (1.1.1)
+    bcrypt_pbkdf (1.1.1-x86_64-darwin)
     bigdecimal (3.1.7)
     bindex (0.8.1)
     bootsnap (1.18.3)
@@ -129,7 +131,7 @@ GEM
       xpath (~> 3.2)
     chart-js-rails (0.1.7)
       railties (> 3.1)
-    concurrent-ruby (1.2.3)
+    concurrent-ruby (1.3.3)
     connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.4.0)
@@ -139,13 +141,16 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
-    dlss-capistrano (4.4.0)
+    dlss-capistrano (4.4.1)
+      bcrypt_pbkdf
       capistrano (~> 3.0)
       capistrano-bundle_audit (>= 0.3.0)
       capistrano-one_time_key
       capistrano-shared_configs
+      ed25519
     domain_name (0.6.20240107)
     drb (2.2.1)
+    ed25519 (1.3.0)
     erubi (1.12.0)
     execjs (2.9.1)
     ffi (1.16.3)
@@ -164,7 +169,7 @@ GEM
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
-    i18n (1.14.4)
+    i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     io-console (0.7.2)
     irb (1.12.0)
@@ -243,9 +248,6 @@ GEM
       nio4r (~> 2.0)
     racc (1.7.3)
     rack (2.2.9)
-    rack-protection (3.2.0)
-      base64 (>= 0.1.0)
-      rack (~> 2.2, >= 2.2.4)
     rack-session (1.0.2)
       rack (< 3)
     rack-test (2.1.0)
@@ -365,7 +367,7 @@ GEM
       sprockets (>= 3.0.0)
     sqlite3 (1.7.3-x86_64-darwin)
     sqlite3 (1.7.3-x86_64-linux)
-    sshkit (1.22.1)
+    sshkit (1.22.2)
       base64
       mutex_m
       net-scp (>= 1.1.2)
