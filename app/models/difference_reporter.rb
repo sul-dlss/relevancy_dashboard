@@ -35,6 +35,8 @@ class DifferenceReporter
   # - the first few results changing is more interesting than the long tail
   # - documents with an almost indistinguishable score compared to its neighbors moving around a little bit isn't interesting
   def change_score
+    return 0 unless doc_rows.many?
+
     score = 0
     doc_rows.each_with_index do |row, index|
       # if positionChange is nil, it's because it has fallen off the first page
