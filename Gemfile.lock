@@ -160,7 +160,7 @@ GEM
       rake
     globalid (1.2.1)
       activesupport (>= 6.1)
-    honeybadger (5.14.0)
+    honeybadger (5.15.0)
     http (5.2.0)
       addressable (~> 2.8)
       base64 (~> 0.1)
@@ -298,7 +298,7 @@ GEM
     regexp_parser (2.9.2)
     reline (0.5.9)
       io-console (~> 0.5)
-    rexml (3.3.1)
+    rexml (3.3.2)
       strscan
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
@@ -342,7 +342,7 @@ GEM
       rubocop (~> 1.61)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
-    selenium-webdriver (4.22.0)
+    selenium-webdriver (4.23.0)
       base64 (~> 0.2)
       logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
