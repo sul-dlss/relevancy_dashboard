@@ -33,24 +33,31 @@
               <div class="input-group mb-3 explain-other">
                 <input type="text" class="form-control" placeholder="document id">
                 <div class="input-group-append">
-                  <%= content_tag :a, 'Explain', class: 'btn btn-outline-secondary', tabindex: 0, data: { toggle: 'popover', trigger: 'click', placement: 'bottom', html: true, ajax_content: search_explain_path(@search, res, '__PLACEHOLDER__') } %>
+                  <%= content_tag :a, 'Explain other', class: 'btn btn-outline-secondary', tabindex: 0, data: { toggle: 'popover', trigger: 'click', placement: 'bottom', html: true, ajax_content: search_explain_path(@search, res, '__PLACEHOLDER__') } %>
                 </div>
               </div>
             </th>
           <% end %>
         </tr>
     </thead>
-    <% report.each do |row| %>
+    <% report.each_with_index do |row, index| %>
       <tr>
         <td>
           <%= position_change_style row[:positionChange] %>
         </td>
         <% row[:docs].each do |doc| %>
           <td>
+            <div>
             <% if doc['id'] %>
-              <%= link_to doc['id'], "https://searchworks.stanford.edu/view/#{doc['id']}" %>: <%= "#{doc['title_245a_display']}" %>
-              <%= content_tag :a, '[explain]', tabindex: 0, data: { toggle: 'popover', placement: 'bottom', trigger: 'click', html: true, title: doc['score'], ajax_content: search_explain_path(@search, doc['search_result'], doc['id']) } %>
+              <%= index + 1 %>.
+              <%= link_to doc['id'], "https://searchworks.stanford.edu/view/#{doc['id']}" %>: <%= "#{doc['title_display'] || doc['title_245a_display']}" %>
+              <%= button_tag doc['score']&.round(0),  class: 'btn btn-outline-secondary btn-sm', data: { toggle: 'popover', placement: 'bottom', trigger: 'click', html: true, title: doc['score'], ajax_content: search_explain_path(@search, doc['search_result'], doc['id']) } %>
             <% end %>
+            </div>
+
+            <div><%= doc['imprint_display']&.join(tag.br) %></div>
+            <div><%= doc['author_person_display']&.join(tag.br) %></div>
+            <div><%= tag.span truncate(doc['summary_display']&.join(tag.br), length: 100), title: doc['summary_display']&.join("\n") %></div>
           </td>
         <% end %>
       </tr>

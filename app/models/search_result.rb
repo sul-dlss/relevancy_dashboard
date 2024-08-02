@@ -7,7 +7,8 @@ class SearchResult < ApplicationRecord
   end
 
   def search_params
-    search.params.merge('fl' => 'id,title_245a_display,score', 'wt' => 'json', 'rows' => 20, 'debugQuery' => true, 'facet' => false)
+    search.params.merge('fl' => 'id,title_245a_display,title_display,author_person_display,summary_display,imprint_display,score', 'wt' => 'json', 'rows' => 20,
+                        'debugQuery' => true, 'facet' => false)
   end
 
   def explain_url(id = nil)
