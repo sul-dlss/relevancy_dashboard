@@ -1,5 +1,5 @@
 class Search < ApplicationRecord
-  has_many :search_results
+  has_many :search_results, dependent: :delete_all
   paginates_per 100
 
   after_commit :generate_search_results_data
