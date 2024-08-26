@@ -88,7 +88,7 @@ GEM
       kaminari (>= 0.13)
       rails (>= 3.1)
     builder (3.3.0)
-    bundler-audit (0.9.1)
+    bundler-audit (0.9.2)
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
     capistrano (3.19.1)
@@ -301,7 +301,7 @@ GEM
       strscan
     rspec-core (3.13.0)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.1)
+    rspec-expectations (3.13.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-mocks (3.13.1)
