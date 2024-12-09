@@ -2,7 +2,7 @@
   "name": "relevancy_dashboard",
   "private": true,
   "dependencies": {
-    "sass": "^1.81.0"
+    "sass": "^1.82.0"
   },
   "scripts": {
     "build:css": "sass ./app/assets/stylesheets/application.sass.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
