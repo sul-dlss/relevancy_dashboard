@@ -147,12 +147,12 @@ GEM
     erb (6.0.7)
     erubi (1.13.1)
     execjs (2.10.0)
-    ffi (1.17.3-arm64-darwin)
-    ffi (1.17.3-x86_64-darwin)
-    ffi (1.17.3-x86_64-linux-gnu)
+    ffi (1.17.4-arm64-darwin)
+    ffi (1.17.4-x86_64-darwin)
+    ffi (1.17.4-x86_64-linux-gnu)
     globalid (1.4.0)
       activesupport (>= 6.1)
-    honeybadger (6.9.2)
+    honeybadger (6.9.3)
       logger
       ostruct
     http (6.0.4)
@@ -190,7 +190,7 @@ GEM
     kaminari-core (1.2.2)
     language_server-protocol (3.17.0.6)
     lint_roller (1.1.0)
-    listen (3.10.0)
+    listen (3.10.1)
       logger
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
